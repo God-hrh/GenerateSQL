@@ -14,8 +14,8 @@ public class AssembleSql {
         // 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
         //Excel表格的路径，把文件拖进Terminal就能获取文件路径啦
         String fileName = "/Users/didi/Desktop/1.xlsx";
-        // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
-        PoDataListener poDataListener = new PoDataListener();
+        // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭,监听器指定是哪个范型类
+        PoDataListener<KefuPo> poDataListener = new PoDataListener();
         EasyExcel.read(fileName, KefuPo.class, poDataListener).sheet().doRead();
         List<KefuPo> result = poDataListener.getResult();
         System.out.println("========== 新增sql语句 ==========");

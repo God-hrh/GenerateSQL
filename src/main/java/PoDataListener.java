@@ -12,19 +12,19 @@ import java.util.List;
  * @author: heruihao
  * @create: 2021-01-05 14:10
  **/
-public class PoDataListener extends AnalysisEventListener<KefuPo> {
-    List<KefuPo> list = new ArrayList<>();
+public class PoDataListener <T> extends AnalysisEventListener<T> {
+    List<T> list = new ArrayList<>();
     @Override
-    public void invoke(KefuPo t, AnalysisContext analysisContext) {
+    public void invoke(T t, AnalysisContext analysisContext) {
         list.add(t);
     }
 
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
-
+        System.out.println("共解析Excel"+list.size()+"条数据");
     }
 
-    public List<KefuPo> getResult(){
+    public List<T> getResult(){
         return list;
     }
 
